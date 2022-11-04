@@ -1,0 +1,21 @@
+name: On push to staging
+
+on:
+  pull_request:
+    branches:
+      - main
+      - staging
+
+jobs:
+  staging:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build docker image
+        run: |
+          docker build -t my-package --platform linux/amd64 --build-arg AWS_ACCESS_KEY_ID=${{ secrets.STAGING_AWS_ACCESS_KEY_ID }} --build-arg AWS_SECRET_ACCESS_KEY=${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }} .
+
+      - name: Run docker image
+        run: npm start

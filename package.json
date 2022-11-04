@@ -1,0 +1,16 @@
+{
+  "name": "financial-math-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "env-cmd docker build --platform linux/amd64 --build-arg AWS_ACCESS_KEY_ID --build-arg AWS_SECRET_ACCESS_KEY -t my-pacage .",
+    "start": "docker run --privileged --platform linux/amd64 --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/$(pwd) -w $(pwd) my-pacage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "env-cmd": "^10.1.0"
+  }
+}
