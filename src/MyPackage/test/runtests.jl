@@ -1,6 +1,12 @@
+using Pkg;
+using Test;
+
 println("Running tests...")
 
-using Test;
-import MyPackage;
+const package_path = abspath(joinpath(pwd(), ".."))
+Pkg.develop(PackageSpec(path=package_path))
+using MyPackage;
 
-result = MyPackage.hello()
+@testset "All Tests" begin
+  @test MyPackage.hello("Jeremy") == "Hello Jeremy!"
+end

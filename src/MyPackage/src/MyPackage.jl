@@ -1,9 +1,9 @@
 module MyPackage
 
-using JuMP, HiGHS, Alpine, Ipopt, Juniper
+# using JuMP, HiGHS, Alpine, Ipopt, Juniper
 
-function hello()
-	return "Hello World!"
+function hello(who::String)::String
+  "Hello $(who)!"
 end
 
 end # module MyPackage
